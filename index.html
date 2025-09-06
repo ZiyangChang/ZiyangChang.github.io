@@ -16,6 +16,59 @@
     p, div {
       text-align: justify;
     }
+    .name-with-pronunciation {
+      position: relative;
+      display: inline-block;
+    }
+    .pronunciation-icon {
+      position: absolute;
+      top: -5px;
+      right: -15px;
+      font-size: 0.6em;
+      cursor: help;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+    .pronunciation-icon:hover {
+      opacity: 1;
+    }
+    
+    /* Custom tooltip styles */
+    .pronunciation-icon .tooltip {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .pronunciation-icon .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+    
+    .pronunciation-icon:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -27,11 +80,17 @@
           <tr style="padding:0px">
             <td style="padding:2.5%;width:68.5%;vertical-align:middle">
               <p style="text-align:center">
-                <name>Ziyang Chang / 常 梓洋</name>
+                <span class="name-with-pronunciation">
+                  <name>Ziyang Chang</name>
+                  <span class="pronunciation-icon">🔊
+                    <span class="tooltip">Pronunciation: ZI-yang CHANG (zee-yahng chahng)</span>
+                  </span>
+                </span>
+                <name> &nbsp;/ 常 梓洋</name>
               </p>
-              <p>I am a senior undergraduate student in Chemical Engineering at <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a>. This past summer, I was a visiting researcher in Stanford’s Undergraduate Visiting Researcher (UGVR) program at the <a href="http://bdml.stanford.edu/Main/HomePage">Biomimetics &amp; Dexterous Manipulation Lab (BDML)</a>, advised by Prof. <a href="http://bdml.stanford.edu/Profiles/MarkCutkosky">Mark Cutkosky</a>, working on whisker-inspired tactile sensing.</p>
+              <p>I am a senior undergraduate student in Chemical Engineering at <a href="https://www.tsinghua.edu.cn/">Tsinghua University</a>. This past summer, I was a visiting researcher in Stanford's Undergraduate Visiting Researcher (UGVR) program at the <a href="http://bdml.stanford.edu/Main/HomePage">Biomimetics &amp; Dexterous Manipulation Lab (BDML)</a>, advised by Prof. <a href="http://bdml.stanford.edu/Profiles/MarkCutkosky">Mark Cutkosky</a>, working on whisker-inspired tactile sensing.</p>
               <p>At Tsinghua, I worked with Prof. <a href="https://www.rufanzhang-group.cn/">Rufan Zhang</a> (Fluidization Lab) on piezoresistive pressure sensors, and with Prof. <a href="https://scholar.google.com/citations?user=RAGNNYUAAAAJ&hl=en">Xiaonan Wang</a> (Key Lab of Industrial Biocatalysis) on machine-learning–assisted membrane-interaction molecule design. </p>
-              <p> I’m applying to Ph.D. programs for Fall 2026!</p>
+              <p> I'm applying to Ph.D. programs for Fall 2026!</p>
               <div style="text-align: center;">
                 <span>Email: changzy22 [@] mails.tsinghua.edu.cn</span>
               </div>
