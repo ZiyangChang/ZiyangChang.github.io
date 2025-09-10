@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
   
   <meta name="application-name" content="Tsinghua University"/>
   <meta name="msapplication-TileColor" content="#782F40" />
@@ -20,41 +21,47 @@
       position: relative;
       display: inline-block;
     }
-    .pronunciation-icon {
-      position: absolute;
-      top: -5px;
-      right: -15px;
-      font-size: 0.6em;
-      cursor: help;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-      z-index: 10;
-    }
-    .pronunciation-icon:hover {
-      opacity: 1;
+    
+    /* Pinyin tooltip styling similar to Kuan Fang's website */
+    .pinyin-tooltip {
+      position: relative;
+      display: inline-block;
+      z-index: 1000;
     }
     
-    /* Custom tooltip styles */
-    .pronunciation-icon .tooltip {
+    .pinyin-tooltip a {
+      color: black;
+      text-decoration: none;
+      padding: 2px 4px;
+      border-radius: 3px;
+      transition: background-color 0.2s ease;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+    
+    .pinyin-tooltip a:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .pinyin-text {
       visibility: hidden;
-      width: 200px;
+      opacity: 0;
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
       background-color: #333;
       color: white;
-      text-align: center;
+      padding: 8px 12px;
       border-radius: 6px;
-      padding: 8px;
-      position: absolute;
-      z-index: 1000;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -100px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 12px;
+      font-size: 14px;
+      white-space: nowrap;
+      z-index: 1001;
+      transition: visibility 0.3s, opacity 0.3s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    .pronunciation-icon .tooltip::after {
+    .pinyin-text::after {
       content: "";
       position: absolute;
       top: 100%;
@@ -65,9 +72,22 @@
       border-color: #333 transparent transparent transparent;
     }
     
-    .pronunciation-icon:hover .tooltip {
+    .pinyin-tooltip:hover .pinyin-text {
       visibility: visible;
       opacity: 1;
+    }
+    
+    .pinyin-text mark {
+      background-color: #555;
+      color: white;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif;
+    }
+    
+    .pinyin-text i.fa {
+      margin-left: 4px;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -79,12 +99,28 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr style="padding:0px">
             <td style="padding:2.5%;width:68.5%;vertical-align:middle">
+              <!-- Audio elements -->
+              <audio id="audio_ziyang">
+                <source src="data/name_pronunciation_ziyang.m4a" type="audio/mp4">
+                Your browser does not support the audio element.
+              </audio>
+              <audio id="audio_chang">
+                <source src="data/name_pronunciation_chang.m4a" type="audio/mp4">
+                Your browser does not support the audio element.
+              </audio>
+              
               <p style="text-align:center">
                 <span class="name-with-pronunciation">
-                  <name>Ziyang Chang</name>
-                  <span class="pronunciation-icon">🔊
-                    <span class="tooltip">Pronunciation: ZI-yang CHANG (zee-yahng chahng)</span>
-                  </span>
+                  <name>
+                    <div class="pinyin-tooltip">
+                      <a style="color: black; text-decoration:none" href="#" onclick="document.getElementById('audio_ziyang').play(); return false;">Ziyang</a>
+                      <div class="pinyin-text">梓洋 <mark> /ˈziː.jɑːŋ/ <i class="fa fa-volume-up"></i> </mark></div>
+                    </div>
+                    <div class="pinyin-tooltip">
+                      <a style="color: black; text-decoration:none" href="#" onclick="document.getElementById('audio_chang').play(); return false;">Chang</a>
+                      <div class="pinyin-text">常 <mark> /tʃɑːŋ/ <i class="fa fa-volume-up"></i> </mark></div>
+                    </div>
+                  </name>
                 </span>
                 <name> &nbsp;/ 常 梓洋</name>
               </p>
